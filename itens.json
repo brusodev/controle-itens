@@ -1,0 +1,28 @@
+{
+  "evento": {
+    "estrutura_e_espaco": [
+      "Local do evento (salão, auditório, espaço aberto)",
+      "Mesas e cadeiras",
+      "Palco / púlpito",
+      "Decoração (flores, banners, iluminação ambiente)",
+      "Som e iluminação técnica",
+      "Gerador de energia (reserva)",
+      "Internet / Wi-Fi"
+    ],
+    "equipamentos": [
+      "Microfones (sem fio e de lapela)",
+      "Projetor / telão / TVs",
+      "Computador / notebook de apoio",
+      "Cabos, extensões e adaptadores",
+      "Caixas de som",
+      "Material de sinalização (placas, totens, adesivos)"
+    ],
+    "materiais_de_apoio": [
+      "Lista de presença / credenciamento",
+      "Crachás / pulseiras de identificação",
+      "Kits para participantes (se houver)",
+      "Papelaria (canetas, blocos, pranchetas)",
+      "Brindes / lembranças"
+    ]
+  }
+}
