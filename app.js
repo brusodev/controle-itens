@@ -367,29 +367,28 @@ function configurarFormularios() {
         e.preventDefault();
         
         const itensReq = [];
-        const itensDiv = document.querySelectorAll('.item-requisicao');
+        const itensDiv = document.querySelectorAll('#itens-requisicao .item-requisicao');
         
         if (itensDiv.length === 0) {
             alert('Adicione pelo menos um item à requisição.');
             return;
         }
         
-        let valid = true;
+        let temErro = false;
         itensDiv.forEach(div => {
             const select = div.querySelector('.req-item-select');
             const qtdInput = div.querySelector('.req-item-qtd');
             
             // Verificar se os elementos existem
             if (!select || !qtdInput) {
-                valid = false;
-                return;
+                return; // Pula este item se os elementos não existem
             }
             
             const itemId = parseInt(select.value);
             const qtd = parseInt(qtdInput.value);
             
-            if (!itemId || !qtd) {
-                valid = false;
+            // Se não tiver valor selecionado, pula (não considera erro)
+            if (!itemId || !qtd || isNaN(qtd)) {
                 return;
             }
             
@@ -397,13 +396,13 @@ function configurarFormularios() {
             
             if (!item) {
                 alert('Item não encontrado no estoque.');
-                valid = false;
+                temErro = true;
                 return;
             }
             
             if (qtd > item.quantidade) {
                 alert(`Quantidade solicitada de "${item.nome}" excede o estoque disponível.`);
-                valid = false;
+                temErro = true;
                 return;
             }
             
@@ -415,7 +414,13 @@ function configurarFormularios() {
             });
         });
         
-        if (!valid) return;
+        if (temErro) return;
+        
+        // Verificar se pelo menos um item válido foi adicionado
+        if (itensReq.length === 0) {
+            alert('Adicione pelo menos um item válido à requisição.');
+            return;
+        }
         
         const requisicao = {
             id: proximoIdRequisicao++,
